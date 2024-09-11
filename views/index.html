@@ -1,0 +1,38 @@
+<!-- views/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>People Info App</title>
+  <link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body>
+  <div id="toolbar">
+    <button id="add-btn">Add Person</button>
+  </div>
+
+  <section>
+    <aside id="people-container">
+      <div id="people-list">
+        <ul id="people">
+          <!-- People will be listed here -->
+        </ul>
+      </div>
+    </aside>
+    <div id="detail-section">
+      <h2 id="modal-title">Details</h2>
+      <div id="modal-container">
+        <!-- Person details will be displayed here -->
+        <!-- OR modal displays here -->
+      </div>
+    </div>
+  </section>
+
+  <script src="../renderer.js"></script> <!-- Attach renderer logic -->
+</body>
+
+</html>
