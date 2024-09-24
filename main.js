@@ -12,7 +12,7 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
     }
   });
 
@@ -43,6 +43,22 @@ ipcMain.on('add-person', (event, name, age, email) => {
 ipcMain.handle('get-people', async () => {
   return new Promise((resolve) => {
     db.getPeople((rows) => {
+      resolve(rows);
+    });
+  });
+});
+
+ipcMain.on('delete-person', (event, name) => {
+  db.deletePerson(name);
+});
+
+ipcMain.on('edit-person', (event, name, age, email) => {
+  db.editPerson(name, age, email);
+});
+
+ipcMain.handle('get-person', async (event, name) => {
+  return new Promise((resolve) => {
+    db.getPerson(name, (rows) => {
       resolve(rows);
     });
   });

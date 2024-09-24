@@ -46,18 +46,41 @@ function getPeople(callback) {
     callback(rows);
   });
 }
-// function deletePerson(id) {
-//   db.run('DELETE FROM people WHERE id = ?', [id], function(err) {
-//     if (err) {
-//       console.error(err.message);
-//     } else {
-//       console.log(`Person deleted with ID: ${id}`);
-//     }
-//   });
-// }
+
+// delete person with name from the database
+function deletePerson(name) {
+  db.run('DELETE FROM people WHERE name = ?', name, function(err) {
+    if (err) {
+      console.error(err.message);
+    } else {
+      console.log(`Person deleted with ID: ${this.lastID}`);
+    }
+  });
+}
+function editPerson(name, age, email) {
+  db.run('UPDATE people SET age = ?, email = ? WHERE name = ?', [age, email, name], function(err) {
+    if (err) {
+      console.error(err.message);
+    } else {
+      console.log(`Person updated with ID: ${this.lastID}`);
+    }
+  });
+}
+// get single person with name from the database
+function getPerson(name, callback) {
+  db.all('SELECT * FROM people WHERE name = ?', name, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    callback(rows);
+  });
+}
 
 module.exports = {
   initDatabase,
   addPerson,
   getPeople,
+  deletePerson,
+  editPerson,
+  getPerson
 };
